@@ -2,7 +2,7 @@
 
 ## Redirect
 redirects to another page
-It works like this: header("Location: $path");
+It works like this: redirect($path);
 
 ## Checking for duplicate login in the database
 check for repeated login
