@@ -47,6 +47,6 @@ just insert sql for pdo
 [!NOTE]
 It works like this: pdoSet($allowed, &$values, $source = array());
 
-# While is not full documantation (it's my first documentation)
+# While is not full documantation
 
 
