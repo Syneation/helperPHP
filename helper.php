@@ -176,13 +176,13 @@ function deleteMusic($id) {
 
     $filePath = $_SERVER['DOCUMENT_ROOT'] . $file['file_path'];
 
-    //удаляем из бд
+    //deleting it from the database
     $sql = "DELETE FROM songs WHERE id = :id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 
-    //удаляем файл из сервера
+    //deleting the file from the server
     if (file_exists($filePath))
         if (!unlink($filePath))
         return ['success' => false, 'message' => 'Не удалось удалить файл'];
