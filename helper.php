@@ -368,32 +368,7 @@ function findNewVideos($limit) {
     return $videoList;
 }
 
-//for space in description
-function spaceDescriptionVideo($description) {
-    $result = '';
-    $maxLength = 27;
-    $words = explode(' ', $description);
-    $currentLine = '';
-
-    foreach ($words as $word) {
-        // Проверяем, не превысит ли добавление слова максимальную длину
-        if (strlen($currentLine) + strlen($word) + 1 <= $maxLength) {
-            $currentLine .= ($currentLine === '' ? '' : ' ') . $word;
-        } else {
-            // Добавляем текущую строку в результат с переносом
-            $result .= $currentLine . "\n";
-            $currentLine = $word;
-        }
-    }
-
-    // Добавляем последнюю строку
-    $result .= $currentLine;
-    
-    return $result;
-}
-
-
-// Функция для получения видео по ID
+// get video ID
 function getVideoById($id) {
     global $pdo;
     
@@ -403,22 +378,22 @@ function getVideoById($id) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-
+//search video
 function searchVideos($searchQuery) {
     global $pdo;
 
-    // Очистка и проверка поискового запроса
+    // Cleaning and checking the search query
     $searchQuery = trim($searchQuery);
     if (empty($searchQuery)) {
         error_log("Пустой поисковый запрос");
         return [];
     }
 
-    // Подготовка поискового термина
+    // Preparing a search term
     $searchTerm = "%$searchQuery%";
     
     try {
-        // Поиск по нескольким полям с сортировкой по дате загрузки (новые сначала)
+        // Multi-field search sorted by upload date (new at first)
         $sql = "SELECT 
                     id, 
                     user, 
@@ -442,8 +417,8 @@ function searchVideos($searchQuery) {
         $stmt->bindParam(':search_author', $searchTerm, PDO::PARAM_STR);
         $stmt->bindParam(':search_category', $searchTerm, PDO::PARAM_STR);
         
-        error_log("Выполняем запрос: " . $sql);
-        error_log("Параметры: " . print_r(['search_title' => $searchTerm, 'search_author' => $searchTerm, 'search_category' => $searchTerm], true));
+        error_log("Executing the request: " . $sql);
+        error_log("Parameters: " . print_r(['search_title' => $searchTerm, 'search_author' => $searchTerm, 'search_category' => $searchTerm], true));
         
         $stmt->execute();
 
@@ -466,11 +441,11 @@ function searchVideos($searchQuery) {
             }
         }
         
-        error_log("Найдено записей: $foundCount, после фильтрации: $filteredCount");
+        error_log("Records found: $fundcount, after filtering $filteredCount");
         
         return $results;
     } catch (PDOException $e) {
-        error_log("Ошибка поиска: " . $e->getMessage());
+        error_log("error searching: " . $e->getMessage());
         return [];
     }
 }
