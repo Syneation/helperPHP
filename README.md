@@ -102,6 +102,18 @@ it works like this: deleteVideo($id);
 also work same as findNewAudio.
 it works like this: findNewVideos($limit).
 
-# While is not full documantation
+## get video id
+it find id video from base date.
+it works like this: getVideoById($id).
+
+## search videos
+also works same as search audio, but you need more values in your table, example: id, user, title, author, photo, description, file_path, category, upload_time.
+it works like this: searchVideos($searchQuery).
+
+# Comments (not under the video)
+it get comments from base date (just comments about site example).
+it works like this: getComments();
+
+# I hope this "helper" help you, also you can send question or my mistake for my email: 777999cosa@gmail.com
 
 
