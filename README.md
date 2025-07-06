@@ -1,4 +1,4 @@
-# Introduction to the use of a helper.
+Introduction to the use of a helper.
 
 ## Redirect
 redirects to another page
@@ -114,6 +114,6 @@ it works like this: searchVideos($searchQuery).
 it get comments from base date (just comments about site example).
 it works like this: getComments();
 
-# I hope this "helper" help you, also you can send question or my mistake for my email: 777999cosa@gmail.com
+# I hope this "helper" help you, also you can send question or my mistake for my email: syneation@gmail.com
 
 
